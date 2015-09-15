@@ -1,5 +1,5 @@
 ### BART Machine tutorial for Restaurant Revenue Prediction
-setwd('./R/Kaggle/ResaurantRevenue/')
+setwd('./R/Kaggle/ResaurantRevenue/data')
 
 library(ggplot2)
 library(corrplot)

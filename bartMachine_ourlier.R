@@ -1,4 +1,4 @@
-setwd('./R/Kaggle/ResaurantRevenue/')
+setwd('./R/Kaggle/ResaurantRevenue/data')
 
 options(java.parameters="-Xmx5000m")
 library(bartMachine)
@@ -31,9 +31,9 @@ bart <- bartMachine(X_varSelect1, y, seed=SEED, num_trees=20)
 rmse_by_num_trees(bart, tree_list=c(10, 20, 30, 50), num_replicates=5) # 50 trees seems better 
 bart <- bartMachine(X_varSelect1, y, seed=SEED, num_trees=50)
 
-ntest_pred <- ntest[,c("P17", "P25", "P28", "Age")]
+X_test <- ntest[,c("P17", "P25", "P28", "Age")]
 
-pred <- predict(bart, ntest_pred)
+pred <- predict(bart, X_test)
 Prediction <- exp(pred)
 submit <- data.frame(Id=ntest$Id, Prediction=Prediction)
 write.csv(submit, "bartMachine_outlier_varSelect1.csv", row.names=F)
